@@ -2,33 +2,7 @@ import subprocess
 import json
 import os
 
-class SwaggerParserPython:
-    def __init__(self, node_script_path = "parseSwagger.js"):
-        self.node_script_path = node_script_path
-        self.view = ''
-    def parse_swagger(self, swagger_file_path):
-        """
-        Parse a Swagger file using the Node.js script and return the parsed JSON.
-        """
-        try:
-            # Call the Node.js script
-            result = subprocess.run(
-                ["node", self.node_script_path, swagger_file_path],
-                capture_output=True,
-                text=True,
-                check=True
-            )
-            self.view = result
-            # Parse the JSON output
-            return json.loads(result.stdout)
-        except subprocess.CalledProcessError as e:
-            print(f"Error running Node.js script: {e.stderr}")
-            return None
-
-    import subprocess
-import json
-
-class SwaggerParserPython:
+class SwaggerParser:
     def __init__(self, node_script_path="parseSwagger.js"):
         self.node_script_path = node_script_path
 
@@ -108,7 +82,7 @@ class SwaggerParserPython:
 
 
 # swagger_file = ""  # Replace with your Swagger file path
-# parser = SwaggerParserPython()
+# parser = SwaggerParser()
 # parsed_data = parser.parse_swagger(swagger_file)
 # # print(parsed_data)
 # requests_array = parser.extract_requests(parsed_data)
